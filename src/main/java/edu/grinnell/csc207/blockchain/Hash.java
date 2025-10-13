@@ -23,13 +23,7 @@ public class Hash {
         if (data.length < 3) {
             return false;
         }
-        for (int i = 0; i < 3; i++) {
-            byte mask = (byte) (1 << i);
-            if ((data[i] & mask) == 1) {
-                return false;
-            }
-        }
-        return true;
+        return data[0] == 0 && data[1] == 0 && data[2] == 0;
     }
 
     public String toString() {
@@ -52,7 +46,7 @@ public class Hash {
     }
 
     public static byte[] calculateHash(String msg) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("sha-256");
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(msg.getBytes());
         byte[] hash = md.digest();
         return hash;

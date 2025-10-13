@@ -24,14 +24,14 @@ public class Block {
         long nonce = 0;
         Hash computed;
         while (true) {
-            computed = calculateHash(num, amount, prevHash, nonce);
+            computed = mineHash(num, amount, prevHash, nonce);
             if (isValidHash(computed)) {
                 break;
             }
             nonce++;
         }
         this.nonce = nonce;
-        this.hash = calculateHash(num, amount, prevHash, nonce);
+        this.hash = mineHash(num, amount, prevHash, nonce);
     }
 
     public Block(int num, int amount, Hash prevHash, long nonce) throws NoSuchAlgorithmException {
@@ -39,7 +39,7 @@ public class Block {
         this.amount = amount;
         this.prevHash = prevHash;
         this.nonce = nonce;
-        this.hash = calculateHash(num, amount, prevHash, nonce);
+        this.hash = mineHash(num, amount, prevHash, nonce);
     }
 
     public int getNum() {
@@ -58,7 +58,7 @@ public class Block {
         return hash;
     }
  
-    public static Hash calculateHash(int num, int amount, Hash prevHash, long nonce) throws NoSuchAlgorithmException {
+    public static Hash mineHash(int num, int amount, Hash prevHash, long nonce) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(ByteBuffer.allocate(4).putInt(num).array());
         md.update(ByteBuffer.allocate(4).putInt(amount).array());
@@ -70,7 +70,7 @@ public class Block {
         return new Hash(digest);
     }
 
-    private static boolean isValidHash(Hash h) {
+    public static boolean isValidHash(Hash h) {
         byte[] bytes = h.getData();
         return bytes[0] == 0 && bytes[1] == 0 && bytes[2] == 0;
     }
@@ -83,6 +83,6 @@ public class Block {
         } else {
             prevHashStr = prevHash.toString();
         }
-        return ("Block " + num + " (Amount: " + amount + ", Nonce: " + nonce + ", prevHash: " + prevHashStr + ", hash: " + hash.toString());
+        return ("Block " + num + " (Amount: " + amount + ", Nonce: " + nonce + ", prevHash: " + prevHashStr + ", hash: " + hash.toString() + ")");
     }
 }
