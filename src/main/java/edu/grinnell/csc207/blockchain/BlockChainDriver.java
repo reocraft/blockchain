@@ -39,10 +39,10 @@ public class BlockChainDriver {
         // Command loop
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
-            System.out.println("\nCurrent chain:");
-            System.out.println(chain.toString());
-            System.out.print("Command? ");
-            String cmd = sc.next().toLowerCase();
+                System.out.println("\nCurrent chain:");
+                System.out.println(chain.toString());
+                System.out.print("Command? ");
+                String cmd = sc.next().toLowerCase();
 
                 if (cmd.equals("help")) {
                     System.out.println("Valid commands:");
