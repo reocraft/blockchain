@@ -17,8 +17,8 @@ public class Block {
     /**
      * Constructs a new Block by mining for a valid nonce.
      *
-     * @param num the block number
-     * @param amount the transaction amount
+     * @param num      the block number
+     * @param amount   the transaction amount
      * @param prevHash the hash of the previous block
      * @throws NoSuchAlgorithmException if SHA-256 algorithm is not available
      */
@@ -42,10 +42,10 @@ public class Block {
     /**
      * Constructs a new Block with a given nonce.
      *
-     * @param num the block number
-     * @param amount the transaction amount
+     * @param num      the block number
+     * @param amount   the transaction amount
      * @param prevHash the hash of the previous block
-     * @param nonce the nonce value for this block
+     * @param nonce    the nonce value for this block
      * @throws NoSuchAlgorithmException if SHA-256 algorithm is not available
      */
     public Block(int num, int amount, Hash prevHash, long nonce) throws NoSuchAlgorithmException {
@@ -104,15 +104,15 @@ public class Block {
     /**
      * Mines a hash for a block with the given parameters.
      *
-     * @param num the block number
-     * @param amount the transaction amount
+     * @param num      the block number
+     * @param amount   the transaction amount
      * @param prevHash the hash of the previous block
-     * @param nonce the nonce value
+     * @param nonce    the nonce value
      * @return the computed hash
      * @throws NoSuchAlgorithmException if SHA-256 algorithm is not available
      */
-    public static Hash mineHash(int num, int amount, Hash prevHash, long nonce) 
-    throws NoSuchAlgorithmException {
+    public static Hash mineHash(int num, int amount, Hash prevHash, long nonce)
+            throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(ByteBuffer.allocate(4).putInt(num).array());
         md.update(ByteBuffer.allocate(4).putInt(amount).array());
@@ -148,7 +148,7 @@ public class Block {
         } else {
             prevHashStr = prevHash.toString();
         }
-        return ("Block " + num + " (Amount: " + amount + ", Nonce: " + 
-        nonce + ", prevHash: " + prevHashStr + ", hash: " + hash.toString() + ")");
+        return ("Block " + num + " (Amount: " + amount + ", Nonce: "
+                + nonce + ", prevHash: " + prevHashStr + ", hash: " + hash.toString() + ")");
     }
 }
