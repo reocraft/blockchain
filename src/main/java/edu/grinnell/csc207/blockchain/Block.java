@@ -111,7 +111,8 @@ public class Block {
      * @return the computed hash
      * @throws NoSuchAlgorithmException if SHA-256 algorithm is not available
      */
-    public static Hash mineHash(int num, int amount, Hash prevHash, long nonce) throws NoSuchAlgorithmException {
+    public static Hash mineHash(int num, int amount, Hash prevHash, long nonce) 
+    throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(ByteBuffer.allocate(4).putInt(num).array());
         md.update(ByteBuffer.allocate(4).putInt(amount).array());
@@ -147,6 +148,7 @@ public class Block {
         } else {
             prevHashStr = prevHash.toString();
         }
-        return ("Block " + num + " (Amount: " + amount + ", Nonce: " + nonce + ", prevHash: " + prevHashStr + ", hash: " + hash.toString() + ")");
+        return ("Block " + num + " (Amount: " + amount + ", Nonce: " + 
+        nonce + ", prevHash: " + prevHashStr + ", hash: " + hash.toString() + ")");
     }
 }
